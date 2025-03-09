@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Équipements</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Emplacement</th>
+          <th>Statut</th>
+          <th>Fonction</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let equipment of equipments">
+            <td>{{ equipment.id }}</td>
+            <td>{{ equipment.name }}</td> <!-- You may want to display a specific property, like equipment.name -->
+            <td>{{ equipment.location }}</td>
+            <td>{{ equipment.status }}</td>
+            <td>{{ equipment.function }}</td>
+            <td>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>

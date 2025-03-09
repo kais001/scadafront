@@ -1,0 +1,30 @@
+/* Style de base pour la modal */
+.modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);  /* Fond semi-transparent */
+    z-index: 1050;  /* Assurez-vous que la modal est au-dessus des autres éléments */
+    overflow: auto;  /* Permet de faire défiler le contenu de la modal si nécessaire */
+  }
+  
+  /* Style du contenu de la modal */
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%;
+    max-width: 500px;
+  }
+  
+  /* Pour les actions dans la modal */
+  .modal-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  

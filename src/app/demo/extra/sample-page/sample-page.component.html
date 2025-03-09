@@ -1,0 +1,76 @@
+<div class="row">
+  <h2>Liste des Alarmes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Équipement</th>
+        <th>Capteur</th>
+        <th>Valeur</th>
+        <th>Timestamp</th>
+        <th>Statut</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alarm of alarms">
+        <td>{{ alarm.id }}</td>
+        <td>{{ alarm.type }}</td>
+        <td>{{ alarm.description }}</td>
+        <td>{{ alarm.equipmentName }}</td>
+        <td>{{ alarm.sensorName }}</td>
+        <td>{{ alarm.sensorValue }}</td>
+        <td>{{ alarm.timestamp }}</td>
+        <!-- Remplacement de `ngClass` par `class` directement -->
+        <td class="{{ alarm.status === 'ACTIVE' ? 'active' : 'resolved' }}">
+          {{ alarm.status }}
+        </td>
+        <td>
+          <button (click)="deleteAlarm(alarm.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .container {
+    width: 80%;
+    margin: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f4f4f4;
+  }
+  /* Styles pour le statut */
+  .active {
+    color: red;
+    font-weight: bold;
+  }
+  .resolved {
+    color: green;
+    font-weight: bold;
+  }
+  /* Bouton */
+  button {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #c9302c;
+  }
+</style>
