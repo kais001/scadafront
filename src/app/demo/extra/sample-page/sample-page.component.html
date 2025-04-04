@@ -1,21 +1,26 @@
-<div class="row">
-  <h2>Liste des Alarmes</h2>
+<!-- Alert Table -->
+<div class="table-header">
+  <h2>List of Alerts</h2>
+  <p>Logs of all the Alerts</p>
+</div>
+
+<div class="table-wrapper">
   <table>
     <thead>
       <tr>
         <th>ID</th>
         <th>Type</th>
         <th>Description</th>
-        <th>Équipement</th>
-        <th>Capteur</th>
-        <th>Valeur</th>
+        <th>Equipment</th>
+        <th>Sensor</th>
+        <th>Value</th>
         <th>Timestamp</th>
-        <th>Statut</th>
+        <th>Status</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let alarm of alarms">
+      <tr *ngFor="let alarm of alarms; trackBy: trackById">
         <td>{{ alarm.id }}</td>
         <td>{{ alarm.type }}</td>
         <td>{{ alarm.description }}</td>
@@ -23,54 +28,50 @@
         <td>{{ alarm.sensorName }}</td>
         <td>{{ alarm.sensorValue }}</td>
         <td>{{ alarm.timestamp }}</td>
-        <!-- Remplacement de `ngClass` par `class` directement -->
-        <td class="{{ alarm.status === 'ACTIVE' ? 'active' : 'resolved' }}">
+        <td [ngClass]="{ 'active': alarm.status === 'ACTIVE', 'resolved': alarm.status === 'RESOLVED' }">
           {{ alarm.status }}
         </td>
         <td>
-          <button (click)="deleteAlarm(alarm.id)">Supprimer</button>
+          <button (click)="deleteAlarm(alarm.id)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<style>
-  .container {
-    width: 80%;
-    margin: auto;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  th {
-    background-color: #f4f4f4;
-  }
-  /* Styles pour le statut */
-  .active {
-    color: red;
-    font-weight: bold;
-  }
-  .resolved {
-    color: green;
-    font-weight: bold;
-  }
-  /* Bouton */
-  button {
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #c9302c;
-  }
-</style>
+<!-- Command Table -->
+<div class="table-header">
+  <h2>List of Commands</h2>
+  <p>Logs of all the Command Responses</p>
+</div>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Command</th>
+        <th>Equipment</th>
+        <th>Status</th>
+        <th>Message</th>
+        <th>Timestamp</th>
+        <th>User</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let command of commandResponses; trackBy: trackByCommandId">
+        <td>{{ command.id }}</td>
+        <td>{{ command.command }}</td>
+        <td>{{ command.equipmentId }}</td>
+        <td>{{ command.status }}</td>
+        <td>{{ command.responseMessage }}</td>
+        <td>{{ command.timestamp }}</td>
+        <td>{{ command.userFirstName }} {{ command.userLastName }}</td>
+        <td>
+          <button (click)="deleteCommand(command.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

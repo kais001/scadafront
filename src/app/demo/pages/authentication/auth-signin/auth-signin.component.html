@@ -1,17 +1,13 @@
 <div class="auth-wrapper">
+  <video autoplay muted loop class="bg-video">
+    <source src="assets/videos/Introducing ACTIAs new technology  COBOT.mp4" type="video/mp4" />
+  </video>
   <div class="auth-content">
-    <div class="auth-bg">
-      <span class="r"></span>
-      <span class="r s"></span>
-      <span class="r s"></span>
-      <span class="r"></span>
-    </div>
     <div class="card">
       <div class="card-body text-center">
         <div class="mb-4">
-          <i class="feather icon-unlock auth-icon"></i>
+          <img src="assets/images/bg.png" alt="Unlock Icon" class="auth-icon" />
         </div>
-        <h3 class="mb-4">Login</h3>
         <form (ngSubmit)="onLogin()">
           <div class="input-group mb-3">
             <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email" name="email" required />
@@ -19,15 +15,35 @@
           <div class="input-group mb-4">
             <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password" required />
           </div>
-          <div class="form-group text-start mb-4">
-            <div class="checkbox checkbox-fill d-inline">
-              <input type="checkbox" id="checkbox-fill-a1" />
-              <label for="checkbox-fill-a1" class="cr">Save Details</label>
-            </div>
-          </div>
+          <div class="form-group text-start mb-4"></div>
           <button class="btn btn-primary mb-4" type="submit">Login</button>
         </form>
+
+        <!-- Invisible button with link to signup -->
+        <div class="mt-3">
+          <p>
+            Vous n'avez pas de compte ?
+          </p>
+
+            <a href="/auth/signup" class="btn-gray">Inscrivez-vous ici</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<style>
+  .btn-gray {
+  color: white; /* Texte en blanc */
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.btn-gray:hover {
+  color: #a8a8a8; /* Texte devient gris au survol */
+}
+
+</style>

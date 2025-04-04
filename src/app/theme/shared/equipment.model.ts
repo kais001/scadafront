@@ -1,23 +1,16 @@
-export interface EquipmentData {
-  id: number;
+export interface Equipment {
+  id?: number;
   name: string;
-  location: string | null;
-  status: EquipmentStatus;
-  function: string | null;
-  sensors: Sensor[];
+  location?: string;
+  status: 'ACTIVE' | 'DEACTIVATED';
+  function?: string;
+  sensors?: Sensor[];
 }
-
-export enum EquipmentStatus {
-  ACTIVE = 'ACTIVE',
-  DEACTIVATED = 'DEACTIVATED'
-}
-
-
 export interface Sensor {
-  id: number;
-  name: string | null;
-  type: string | null;
-  threshold: number | null;  // Threshold can be null for flexibility
-  equipmentData: EquipmentData | null;
+  id?: number;
+  name: string;
+  type?: string;
+  threshold?: number;
   extension: string;
+  equipmentData?: Equipment;
 }

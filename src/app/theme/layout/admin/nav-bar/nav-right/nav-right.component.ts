@@ -47,4 +47,6 @@ export class NavRightComponent implements OnInit {
     localStorage.setItem('user', JSON.stringify(this.selectedUser));  // Sauvegarde les modifications dans le localStorage
     this.closeModal();  // Ferme la modal après l'enregistrement
   }
+
+  
 }

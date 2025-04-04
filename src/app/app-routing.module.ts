@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './theme/layout/admin/admin.component';
 import { GuestComponent } from './theme/layout/guest/guest.component';
+import { AuthGuard } from './guards/auth.guard'; // Import du guard
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [AuthGuard], // Protéger toutes les routes enfants
     children: [
       {
         path: '',
@@ -36,14 +38,15 @@ const routes: Routes = [
       {
         path: 'sample-page',
         loadComponent: () => import('./demo/extra/sample-page/sample-page.component')
-        
       },
       {
         path: 'user',
         loadComponent: () => import('./demo/extra/user/sample-page.component')
-        
+      },
+      {
+        path: 'equipment',
+        loadComponent: () => import('./demo/extra/equipment/equipment.component').then(m => m.EquipmentComponent),
       }
-      
     ]
   },
   {

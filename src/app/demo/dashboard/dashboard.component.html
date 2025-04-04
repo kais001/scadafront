@@ -1,26 +1,312 @@
-<div class="container">
-    <h2>Équipements</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Emplacement</th>
-          <th>Statut</th>
-          <th>Fonction</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let equipment of equipments">
-            <td>{{ equipment.id }}</td>
-            <td>{{ equipment.name }}</td> <!-- You may want to display a specific property, like equipment.name -->
-            <td>{{ equipment.location }}</td>
-            <td>{{ equipment.status }}</td>
-            <td>{{ equipment.function }}</td>
-            <td>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-  </div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capteurs et Équipements</title>
+    <style>
+        /* Styles de base */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Styles pour les cartes */
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            background: white;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background: linear-gradient(1350deg, #3f4d67, #02a308);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .text-muted {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Styles pour les tableaux */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table thead {
+            background: #343a40;
+            color: white;
+        }
+
+        .table tbody tr:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .form-check-input {
+            width: 18px;
+            height: 18px;
+            accent-color: #007bff;
+        }
+
+        /* Styles pour les graphiques */
+        .chart-area {
+            height: 200px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .card {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="row">
+            <!-- Section ARM N°1 -->
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="title d-inline">Arms</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-full-width table-responsive2">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="equipmentData1">
+                                                <p class="title">ARM N°1 Details</p>
+                                                <p class="text-muted"><strong>Name:</strong> {{ equipmentData1.name }}</p>
+                                                <p class="text-muted"><strong>Location:</strong> {{ equipmentData1.location }}</p>
+                                                <p class="text-muted"><strong>Status:</strong> {{ equipmentData1.status }}</p>
+                                                <p class="text-muted"><strong>Function:</strong> {{ equipmentData1.function }}</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Capteurs -->
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Sensors</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Sensor Name</th>
+                                        <th>Sensor Type</th>
+                                        <th>Threshold</th>
+                                        <th>Extension</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sensor of equipmentData1.sensors">
+                                        <td>{{ sensor.name }}</td>
+                                        <td>{{ sensor.type }}</td>
+                                        <td>{{ sensor.threshold }}</td>
+                                        <td>{{ sensor.extension }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Graphiques -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Temperature Sensor</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-danger-states"></i> °C</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas id="chartLineRed1"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Vibration Sensor</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-danger-states"></i> Hz</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas id="chartLineRed2"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Current Sensor</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-danger-states"></i> AMP</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas id="chartLineRed3"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Strain Sensor</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-danger-states"></i> m/m</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas id="chartLineRed4"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section ARM N°2 -->
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h6 class="title d-inline">Arms</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-full-width table-responsive2">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div *ngIf="equipmentData2">
+                                                <p class="title">ARM N°2 Details</p>
+                                                <p class="text-muted"><strong>Name:</strong> {{ equipmentData2.name }}</p>
+                                                <p class="text-muted"><strong>Location:</strong> {{ equipmentData2.location }}</p>
+                                                <p class="text-muted"><strong>Status:</strong> {{ equipmentData2.status }}</p>
+                                                <p class="text-muted"><strong>Function:</strong> {{ equipmentData2.function }}</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Capteurs pour ARM N°2 -->
+            <div class="col-lg-6 col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Sensors</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table tablesorter">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Sensor Name</th>
+                                        <th>Sensor Type</th>
+                                        <th>Threshold</th>
+                                        <th>Extension</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let sensor of equipmentData2.sensors">
+                                        <td>{{ sensor.name }}</td>
+                                        <td>{{ sensor.type }}</td>
+                                        <td>{{ sensor.threshold }}</td>
+                                        <td>{{ sensor.extension }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Graphiques pour ARM N°2 -->
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Temperature Sensor</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-danger-states"></i> °C</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas id="chartLineRed5"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Vibration Sensor</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-danger-states"></i> Hz</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas id="chartLineRed6"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Current Sensor</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-danger-states"></i> AMP</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas id="chartLineRed7"></canvas></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-chart">
+                    <div class="card-header">
+                        <h5 class="card-category">Strain Sensor</h5>
+                        <h3 class="card-title"><i class="tim-icons icon-bell-55 text-danger-states"></i> m/m</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-area"><canvas id="chartLineRed8"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

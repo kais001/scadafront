@@ -1,0 +1,143 @@
+/* Table Header Styling (Gradient Background) */
+.table-header {
+  background: linear-gradient(1350deg, #3f4d67, #02a308);
+  color: white;
+  padding: 20px;
+  text-align: left;
+  border-radius: 8px 8px 0 0; /* Rounded top corners for a modern look */
+  margin-bottom: 20px;
+}
+
+.table-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.table-header p {
+  margin: 5px 0 0;
+  font-size: 16px;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+/* Table Wrapper Styling */
+.table-wrapper {
+  max-height: 400px; /* Allow more rows */
+  overflow-y: auto;
+  margin-bottom: 40px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow around the table */
+  padding: 10px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px; /* Rounded table edges */
+  overflow: hidden; /* Make sure content doesn't spill over */
+}
+
+/* Table Header Styling */
+thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f1f1f1;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 2px solid #e0e0e0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for better visibility */
+}
+
+/* Table Body Styling */
+tbody td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1f1f1;
+  color: #555;
+  font-size: 15px;
+  background-color: #fff;
+  transition: background-color 0.3s ease-in-out;
+}
+
+tbody tr:hover {
+  background-color: #f0f9ff; /* Light blue on hover */
+  cursor: pointer;
+}
+
+tbody td:last-child {
+  text-align: center; /* Center align the action buttons */
+}
+
+/* Status Styling */
+.active {
+  color: #ff5e5e; /* Red color for active */
+  font-weight: bold;
+}
+
+.resolved {
+  color: #28a745; /* Green color for resolved */
+  font-weight: bold;
+}
+
+/* Button Styling */
+button {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 0 auto; /* Center the button */
+  display: block; /* Make button block-level */
+  width: 120px;
+}
+
+button:hover {
+  background-color: #b30000;
+  transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  .table-wrapper {
+    margin-bottom: 20px;
+  }
+
+  table {
+    font-size: 14px; /* Smaller font size on smaller screens */
+  }
+
+  .table-header h2 {
+    font-size: 24px;
+  }
+
+  .table-header p {
+    font-size: 14px;
+  }
+
+  button {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Additional Margin Styling for Spacing Between Tables */
+.table-wrapper + .table-wrapper {
+  margin-top: 50px; /* Add more space between the two tables */
+}

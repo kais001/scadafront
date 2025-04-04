@@ -68,12 +68,13 @@ export const NavigationItems: NavigationItem[] = [
       },
       {
         id: 'sample-page',
-        title: 'Alerts',
+        title: 'Logs',
         type: 'item',  // Type spécifique ici
         url: '/sample-page',
         classes: 'nav-item',
         icon: 'feather icon-sidebar'
       },
+
     ]
   }
 ];
@@ -87,5 +88,16 @@ if (user.role === 'ADMIN') {
     url: '/user',
     classes: 'nav-item',
     icon: 'feather icon-sidebar'
+  });
+}
+
+if (user.role === 'ADMIN') {
+  NavigationItems[1].children.push({
+id: 'equipment',
+title: 'Equipment',
+type: 'item',  // Type spécifique ici
+url: '/equipment',
+classes: 'nav-item',
+icon: 'feather icon-sidebar'
   });
 }

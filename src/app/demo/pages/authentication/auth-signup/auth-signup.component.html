@@ -1,15 +1,13 @@
 <div class="auth-wrapper">
+  <video autoplay muted loop class="bg-video">
+    <source src="assets/videos/Introducing ACTIAs new technology  COBOT.mp4" type="video/mp4" />
+  </video>
   <div class="auth-content">
-    <div class="auth-bg">
-      <span class="r"></span>
-      <span class="r s"></span>
-      <span class="r s"></span>
-      <span class="r"></span>
-    </div>
+
     <div class="card">
       <div class="card-body text-center">
         <div class="mb-4">
-          <i class="feather icon-user-plus auth-icon"></i>
+          <img src="assets/images/bg.png" alt="Unlock Icon" class="auth-icon">
         </div>
         <h3 class="mb-4">Sign up</h3>
         <form (ngSubmit)="onSubmit()">
@@ -46,8 +44,8 @@
           <button class="btn btn-primary shadow-2 mb-4" type="submit">Sign up</button>
         </form>
 
-        <p class="mb-0 text-muted">
-          Already have an account?
+        <p>Vous avez deja un compte ?  
+          <a href="/auth/signin" class="invisible-btn">Login</a>
         </p>
       </div>
     </div>
